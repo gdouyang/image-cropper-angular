@@ -19,7 +19,7 @@ export class AppComponent {
   rotation = 0;
   scale = 1;
   showCropper = false;
-  containWithinAspectRatio = false;
+  containWithinAspectRatio = true;
   transform: ImageTransform = {};
 
   fileChangeEvent(event: any): void {

@@ -1,78 +1,71 @@
 <input type="file" (change)="fileChangeEvent($event)" />
-<br />
-<br />
-<button (click)="rotateLeft()">Rotate left</button>
-<button (click)="rotateRight()">Rotate right</button>
-<button (click)="flipHorizontal()">Flip horizontal</button>
-<button (click)="flipVertical()">Flip vertical</button>
-<br />
-<br />
-<button (click)="toggleContainWithinAspectRatio()">
-  {{
-    containWithinAspectRatio
-      ? 'Fill Aspect Ratio'
-      : 'Contain Within Aspect Ratio'
-  }}
-</button>
-<button (click)="resetImage()">Reset image</button>
-<br />
-<br />
-<input
-  [(ngModel)]="rotation"
-  placeholder="Rotation"
-  type="number"
-  (keyup)="updateRotation()"
-/>
-<button (click)="zoomOut()">Zoom -</button>
-<button (click)="zoomIn()">Zoom +</button>
-<div>
-  <image-cropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [containWithinAspectRatio]="containWithinAspectRatio"
-    [aspectRatio]="4 / 3"
-    [resizeToWidth]="256"
-    [cropperMinWidth]="128"
-    [onlyScaleDown]="true"
-    [roundCropper]="false"
-    [canvasRotation]="canvasRotation"
-    [transform]="transform"
-    [alignImage]="'left'"
-    [style.display]="showCropper ? null : 'none'"
-    format="png"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded()"
-    (cropperReady)="cropperReady($event)"
-    (loadImageFailed)="loadImageFailed()"
-  ></image-cropper>
+<div
+  [style.display]="showCropper ? null : 'none'"
+  style="text-align: center;">
+  <div style="display: inline-block;">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [containWithinAspectRatio]="containWithinAspectRatio"
+      [aspectRatio]="4 / 3"
+      [resizeToWidth]="256"
+      [cropperMinWidth]="128"
+      [onlyScaleDown]="true"
+      [roundCropper]="false"
+      [canvasRotation]="canvasRotation"
+      [transform]="transform"
+      [alignImage]="'left'"
+      [style.display]="showCropper ? null : 'none'"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady($event)"
+      (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+  </div>
+  <div>
+    <button class="btn btn-outline-primary btn-sm" (click)="rotateLeft()">Rotate left</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="rotateRight()">Rotate right</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="flipHorizontal()">Flip horizontal</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="flipVertical()">Flip vertical</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="resetImage()">Reset image</button>
+    <br />
+    <input
+      [(ngModel)]="rotation"
+      placeholder="Rotation"
+      type="number"
+      (keyup)="updateRotation()"
+    />
+    <button class="btn btn-outline-primary btn-sm" (click)="zoomOut()">Zoom -</button>
+    <button class="btn btn-outline-primary btn-sm" (click)="zoomIn()">Zoom +</button>
+  </div>
 </div>
-<div>
-  <p>前</p>
-  <img
-    [src]="croppedImage"
-    [style.border]="'1px solid black'"
-    [style.minWidth]="'120px'"
-    [style.minHeight]="'100px'"
-  />
-</div>
-
-->
-
-<div>
-  <p>超解像后：</p>
-  <img
-    [src]="convertImage"
-    [style.border]="'1px solid black'"
-    [style.minWidth]="'120px'"
-    [style.minHeight]="'100px'"
-  />
-</div>
-
-<div></div>
-<div class="container">
+<br />
+<div class="container" style="padding: 10px;background: aliceblue;">
   <div class="row">
-    <div class="col">Column</div>
-    <div class="col">Column</div>
-    <div class="col">Column</div>
+    <div class="col">
+      <p>前</p>
+        <img
+          [src]="croppedImage"
+          [style.border]="'1px solid black'"
+          [style.minWidth]="'120px'"
+          [style.minHeight]="'100px'"
+        />
+    </div>
+    <div class="col"></div>
+    <div class="col">
+      <p>超解像后：</p>
+      <img
+        [src]="convertImage"
+        [style.border]="'1px solid black'"
+        [style.minWidth]="'120px'"
+        [style.minHeight]="'100px'"
+      />
+    </div>
+  </div>
+  <div class="row" style="text-align: center;">
+    <div class="col">
+      <button type="button" class="btn btn-primary">超解像实施</button>
+    </div>
   </div>
 </div>
