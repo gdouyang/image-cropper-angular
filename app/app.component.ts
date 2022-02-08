@@ -14,6 +14,7 @@ import { base64ToFile } from './image-cropper/utils/blob.utils';
 export class AppComponent {
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  convertImage: any = '';
   canvasRotation = 0;
   rotation = 0;
   scale = 1;
@@ -109,5 +110,9 @@ export class AppComponent {
       ...this.transform,
       rotate: this.rotation,
     };
+  }
+
+  uploadImg() {
+
   }
 }

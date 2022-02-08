@@ -46,7 +46,33 @@
     (loadImageFailed)="loadImageFailed()"
   ></image-cropper>
 </div>
-<img
-  [src]="croppedImage"
-  [style.border]="croppedImage ? '1px solid black' : 'none'"
-/>
+<div>
+  <p>前</p>
+  <img
+    [src]="croppedImage"
+    [style.border]="'1px solid black'"
+    [style.minWidth]="'120px'"
+    [style.minHeight]="'100px'"
+  />
+</div>
+
+->
+
+<div>
+  <p>超解像后：</p>
+  <img
+    [src]="convertImage"
+    [style.border]="'1px solid black'"
+    [style.minWidth]="'120px'"
+    [style.minHeight]="'100px'"
+  />
+</div>
+
+<div></div>
+<div class="container">
+  <div class="row">
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+  </div>
+</div>
