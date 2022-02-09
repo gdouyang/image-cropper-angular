@@ -159,10 +159,12 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     }
 
     private setCssTransform() {
+        const scale = this.transform.scale || 1;
         this.safeTransformStyle = this.sanitizer.bypassSecurityTrustStyle(
-            'scaleX(' + (this.transform.scale || 1) * (this.transform.flipH ? -1 : 1) + ')' +
-            'scaleY(' + (this.transform.scale || 1) * (this.transform.flipV ? -1 : 1) + ')' +
-            'rotate(' + (this.transform.rotate || 0) + 'deg)'
+            'scaleX(' + (scale || 1) * (this.transform.flipH ? -1 : 1) + ')' +
+            'scaleY(' + (scale || 1) * (this.transform.flipV ? -1 : 1) + ')' +
+            'rotate(' + (this.transform.rotate || 0) + 'deg)' +
+            'translate3d(' + (this.transform.x || 1) / scale + 'px,' + (this.transform.y || 1) / scale + 'px,' + '0)'
         );
     }
 
@@ -932,4 +934,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     private getClientY(event: any): number {
         return (event.touches && event.touches[0] ? event.touches[0].clientY : event.clientY) || 0;
     }
+
+    startImg(event: any, moveType: MoveTypes, position: string | null = null): void {
+      debugger
+  }
 }

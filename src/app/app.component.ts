@@ -18,6 +18,8 @@ export class AppComponent {
   canvasRotation = 0;
   rotation = 0;
   scale = 1;
+  xPos = 1;
+  yPos = 1;
   showCropper = false;
   containWithinAspectRatio = true;
   transform: ImageTransform = {};
@@ -102,6 +104,38 @@ export class AppComponent {
     };
   }
 
+  moveLeft() {
+    this.xPos -= 1;
+    this.transform = {
+      ...this.transform,
+      x: this.xPos,
+    };
+  }
+
+  moveRight() {
+    this.xPos += 1;
+    this.transform = {
+      ...this.transform,
+      x: this.xPos,
+    };
+  }
+
+  moveUp() {
+    this.yPos -= 1;
+    this.transform = {
+      ...this.transform,
+      y: this.yPos,
+    };
+  }
+
+  moveDown() {
+    this.yPos += 1;
+    this.transform = {
+      ...this.transform,
+      y: this.yPos,
+    };
+  }
+
   toggleContainWithinAspectRatio() {
     this.containWithinAspectRatio = !this.containWithinAspectRatio;
   }
@@ -138,4 +172,5 @@ export class AppComponent {
   uploadImg() {
 
   }
+
 }

@@ -3,4 +3,6 @@ export interface ImageTransform {
     rotate?: number;
     flipH?: boolean;
     flipV?: boolean;
+    x?:number;
+    y?:number;
 }
