@@ -1,9 +1,44 @@
+.container {
+  padding: 10px;
+  background: aliceblue;
+  margin-top: 10px;
+}
 p {
   font-family: Lato;
 }
 
 image-cropper {
   /* height: 50vh; */
-  width: 340px;
-  height: 280px;
+  // width: 340px;
+  height: 340px;
+}
+
+.btn-1 {
+  color: #333;
+  fill: #333;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin-right: 5px;
+  &:hover {
+    border: 1px solid #999;
+  }
+}
+
+.ivu-upload-drag {
+  background: #fff;
+  border: 1px dashed #dcdee2;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s ease;
+  label {
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.ivu-upload input[type=file] {
+  display: none;
 }

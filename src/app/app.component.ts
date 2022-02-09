@@ -21,6 +21,7 @@ export class AppComponent {
   showCropper = false;
   containWithinAspectRatio = true;
   transform: ImageTransform = {};
+  dragOver = false;
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
@@ -110,6 +111,28 @@ export class AppComponent {
       ...this.transform,
       rotate: this.rotation,
     };
+  }
+
+  onDrop (e: any) {
+    e.preventDefault();
+    this.dragOver = false;
+    let event = {
+      type: "change",
+      target: {
+        files: e.dataTransfer.files
+      }
+    };
+    this.fileChangeEvent(event);
+  }
+
+  onDragover (e: any) {
+    e.preventDefault();
+    this.dragOver = true;
+  }
+
+  onDragleave (e: any) {
+    e.preventDefault();
+    this.dragOver = false;
   }
 
   uploadImg() {
