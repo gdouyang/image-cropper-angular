@@ -105,7 +105,7 @@ export class AppComponent {
   }
 
   moveLeft() {
-    this.xPos -= 1;
+    this.xPos -= 10;
     this.transform = {
       ...this.transform,
       x: this.xPos,
@@ -113,7 +113,7 @@ export class AppComponent {
   }
 
   moveRight() {
-    this.xPos += 1;
+    this.xPos += 10;
     this.transform = {
       ...this.transform,
       x: this.xPos,
@@ -121,7 +121,7 @@ export class AppComponent {
   }
 
   moveUp() {
-    this.yPos -= 1;
+    this.yPos -= 10;
     this.transform = {
       ...this.transform,
       y: this.yPos,
@@ -129,7 +129,7 @@ export class AppComponent {
   }
 
   moveDown() {
-    this.yPos += 1;
+    this.yPos += 10;
     this.transform = {
       ...this.transform,
       y: this.yPos,
@@ -170,7 +170,7 @@ export class AppComponent {
   }
 
   uploadImg() {
-
+    this.convertImage = this.croppedImage
   }
 
 }

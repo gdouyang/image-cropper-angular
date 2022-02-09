@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <p>前</p>
+      <p>オリジナル：</p>
       <div class="ivu-upload" [hidden]="showCropper">
         <div class="ivu-upload ivu-upload-drag"
           (drop)="onDrop($event)"
@@ -45,14 +45,14 @@
     </div>
     <div class="col"></div>
     <div class="col">
-      <p>超解像后：</p>
+      <p>超解像後：</p>
       <img [src]="convertImage" [style.border]="'1px solid black'" [style.minWidth]="'120px'"
         [style.minHeight]="'100px'" />
     </div>
   </div>
   <div class="row" style="text-align: center;">
     <div class="col">
-      <button type="button" class="btn btn-primary">超解像实施</button>
+      <button type="button" class="btn btn-primary" (click)="uploadImg()">超解像実施</button>
     </div>
   </div>
 </div>
