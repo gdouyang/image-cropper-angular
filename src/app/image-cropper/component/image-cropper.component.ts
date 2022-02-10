@@ -93,7 +93,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
 
     @Output() imageCropped = new EventEmitter<ImageCroppedEvent>();
     @Output() startCropImage = new EventEmitter<void>();
-    @Output() imageLoaded = new EventEmitter<void>();
+    @Output() imageLoaded = new EventEmitter<Dimensions>();
     @Output() cropperReady = new EventEmitter<Dimensions>();
     @Output() loadImageFailed = new EventEmitter<void>();
 
@@ -353,7 +353,10 @@ export class ImageCropperComponent implements OnChanges, OnInit {
 
     imageLoadedInView(): void {
         if (this.transformedImage != null) {
-            this.imageLoaded.emit();
+            this.imageLoaded.emit({
+              width: this.sourceImage.nativeElement.width,
+              height: this.sourceImage.nativeElement.height
+            });
             this.setImageMaxSizeRetries = 0;
             setTimeout(() => this.checkImageMaxSizeRecursively());
         }

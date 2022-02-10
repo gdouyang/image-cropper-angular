@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { EventManager } from '@angular/platform-browser';
 import {
   Dimensions,
   ImageCroppedEvent,
@@ -24,6 +25,21 @@ export class AppComponent {
   containWithinAspectRatio = false;
   transform: ImageTransform = {};
   dragOver = false;
+  support = '';
+  coe = 0.2;
+  coeStatus = '';
+  scaling = false;
+  trueWidth = 0;
+  trueHeight = 0;
+
+  constructor(private eventManager: EventManager) {
+    this.support =
+      "onwheel" in document.createElement("div")
+        ? "wheel"
+        : document['onmousewheel'] !== undefined
+        ? "mousewheel"
+        : "DOMMouseScroll";
+  }
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
@@ -34,9 +50,11 @@ export class AppComponent {
     console.log(event, base64ToFile(event.base64));
   }
 
-  imageLoaded() {
+  imageLoaded(sourceImageDimensions: Dimensions) {
     this.showCropper = true;
-    console.log('Image loaded');
+    console.log('Image loaded', sourceImageDimensions);
+    this.trueWidth = sourceImageDimensions.width;
+    this.trueHeight = sourceImageDimensions.height;
   }
 
   cropperReady(sourceImageDimensions: Dimensions) {
@@ -167,6 +185,56 @@ export class AppComponent {
   onDragleave (e: any) {
     e.preventDefault();
     this.dragOver = false;
+  }
+
+  // 缩放图片
+  scaleImg() {
+    window['$that'] = this;
+    // this.eventManager.addGlobalEventListener('window', this.support, this.changeSize)
+    window.addEventListener(this.support, this.changeSize, {
+      passive: false
+    });
+  }
+  // 移出框
+  cancelScale() {
+    window['$that'] = undefined;
+    // this.eventManager.addGlobalEventListener('window', this.support, null)
+    window.removeEventListener(this.support, this.changeSize);
+  }
+
+  changeSize(e: any) {
+    e.preventDefault();
+    var that = window['$that']
+    var change = e.deltaY || e.wheelDelta;
+    var coe = that.coe;
+    coe =
+        coe / that.trueWidth > coe / that.trueHeight
+          ? coe / that.trueHeight
+          : coe / that.trueWidth;
+    var num = coe * change;
+    var scale = that.scale;
+    num < 0
+        ? (scale += Math.abs(num))
+        : scale > Math.abs(num)
+        ? (scale -= Math.abs(num))
+        : scale;
+    let status = num < 0 ? "add" : "reduce";
+    if (status !== that.coeStatus) {
+      that.coeStatus = status;
+      that.coe = 0.2;
+    }
+    if (!that.scaling) {
+      setTimeout(() => {
+        that.scaling = false;
+        that.coe = that.coe += 0.01;
+        that.transform = {
+          ...that.transform,
+          scale: that.scale,
+        };
+      }, 50);
+    }
+    that.scaling = true;
+    that.scale = scale;
   }
 
   uploadImg() {
