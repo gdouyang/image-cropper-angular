@@ -1,7 +1,8 @@
 <div class="container">
+  <div class="title">車輌ナンバープレート超解像デモ</div>
   <div class="row">
-    <div class="col">
-      <p>オリジナル：</p>
+    <div class="col col-8">
+      <p>オリジナル画像：</p>
       <div class="ivu-upload" [hidden]="showCropper">
         <div class="ivu-upload ivu-upload-drag"
           (drop)="onDrop($event)"
@@ -11,7 +12,7 @@
           <label for="filexxx">
             <input type="file" class="ivu-upload-input" id="filexxx" (change)="fileChangeEvent($event)">
             <div style="padding: 20px 0px;">
-              <p>Click or drag files here to upload</p>
+              <div>Click or drag files here to upload</div>
             </div>
           </label>
         </div>
@@ -26,6 +27,7 @@
             (loadImageFailed)="loadImageFailed()"></image-cropper>
         </div>
         <div>
+          <button type="button" class="btn btn-primary" style="width: 350px;">オリジナル画像ナンバープレート</button>
           <!-- <button class="btn btn-1" (click)="rotateLeft()">Rotate left</button>
           <button class="btn btn-1" (click)="rotateRight()">Rotate right</button>
           <button class="btn btn-1" (click)="zoomOut()">-</button>
@@ -43,16 +45,22 @@
         </div>
       </div>
     </div>
-    <div class="col"></div>
-    <div class="col">
-      <p>超解像後：</p>
-      <img [src]="convertImage" [style.border]="'1px solid black'" [style.minWidth]="'120px'"
-        [style.minHeight]="'100px'" />
-    </div>
-  </div>
-  <div class="row" style="text-align: center;">
-    <div class="col">
-      <button type="button" class="btn btn-primary" (click)="uploadImg()">超解像実施</button>
+    <div class="col col-4">
+      <div style="text-align: center;">
+        <div>
+          <p>オリジナルナンバープレート画像：</p>
+          <img [src]="croppedImage" [style.border]="'1px solid black'" [style.minWidth]="'120px'"
+            [style.minHeight]="'100px'" />
+        </div>
+        <div style="margin-top: 20px;">
+          <p>超解像結果：</p>
+          <img [src]="convertImage" [style.border]="'1px solid black'" [style.minWidth]="'120px'"
+            [style.minHeight]="'100px'" />
+        </div>
+        <div style="margin-top: 20px;text-align: left;">
+          <button type="button" class="btn btn-primary" (click)="uploadImg()" style="width: 80%;">超解像実施</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

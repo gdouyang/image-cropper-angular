@@ -1,15 +1,22 @@
 .container {
   padding: 10px;
-  background: aliceblue;
+  // background: aliceblue;
   margin-top: 10px;
+  border: 1px solid;
+}
+.title {
+  font-weight: 700;
+  padding: 10px;
+  background: aliceblue;
 }
 p {
   font-family: Lato;
+  text-align: left;
 }
 
 image-cropper {
-  /* height: 50vh; */
-  width: 540px;
+  // height: 50vh;
+  width: 640px;
   // height: 340px;
 }
 

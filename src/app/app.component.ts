@@ -21,7 +21,7 @@ export class AppComponent {
   xPos = 1;
   yPos = 1;
   showCropper = false;
-  containWithinAspectRatio = true;
+  containWithinAspectRatio = false;
   transform: ImageTransform = {};
   dragOver = false;
 
