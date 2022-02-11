@@ -67,8 +67,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     @Input() aspectRatio = 1;
     @Input() resizeToWidth = 0;
     @Input() resizeToHeight = 0;
-    @Input() cropperMinWidth = 0;
-    @Input() cropperMinHeight = 0;
+    @Input() cropperMinWidth = 20;
+    @Input() cropperMinHeight = 20;
     @Input() cropperStaticWidth = 0;
     @Input() cropperStaticHeight = 0;
     @Input() canvasRotation = 0;

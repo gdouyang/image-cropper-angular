@@ -19,12 +19,28 @@
       </div>
       <div [hidden]="!showCropper" style="text-align: center;">
         <div style="display: inline-block;">
-          <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-            [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3" [resizeToWidth]="256"
-            [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false" [canvasRotation]="canvasRotation"
-            [transform]="transform" [alignImage]="'left'" [style.display]="showCropper ? null : 'none'" format="png" [imageQuality]="100"
-            (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady($event)"
-            (loadImageFailed)="loadImageFailed()" (mouseover)="scaleImg()" (mouseout)="cancelScale()"></image-cropper>
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="false"
+            [containWithinAspectRatio]="containWithinAspectRatio"
+            [aspectRatio]="4 / 3"
+            [resizeToWidth]="256"
+            [cropperMinWidth]="15"
+            [cropperMinHeight]="15"
+            [onlyScaleDown]="true"
+            [roundCropper]="false"
+            [canvasRotation]="canvasRotation"
+            [transform]="transform"
+            [alignImage]="'left'"
+            [style.display]="showCropper ? null : 'none'"
+            format="png"
+            [imageQuality]="100"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded($event)"
+            (cropperReady)="cropperReady($event)"
+            (loadImageFailed)="loadImageFailed()"
+            (mouseover)="scaleImg()"
+            (mouseout)="cancelScale()"></image-cropper>
         </div>
         <div>
           <button type="button" class="btn btn-primary" style="width: 350px;">オリジナル画像アップデート</button>
