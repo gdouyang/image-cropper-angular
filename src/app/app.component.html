@@ -58,7 +58,11 @@
             [style.minHeight]="'100px'" />
         </div>
         <div style="margin-top: 20px;text-align: left;">
-          <button type="button" class="btn btn-primary" (click)="uploadImg()" style="width: 80%;">超解像実施</button>
+          <button
+            class="btn btn-primary"
+            (click)="uploadImg()"
+            [disabled]="!showCropper"
+            style="width: 80%;">超解像実施</button>
         </div>
       </div>
     </div>
