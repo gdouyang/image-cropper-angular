@@ -26,12 +26,17 @@ export class AppComponent {
   containWithinAspectRatio = false;
   transform: ImageTransform = {};
   dragOver = false;
+  // zoomin zoomout
   support = '';
   coe = 0.2;
   coeStatus = '';
   scaling = false;
   trueWidth = 0;
   trueHeight = 0;
+  // move img
+  moveX = 0;
+  moveY = 0;
+
 
   constructor(private eventManager: EventManager,private http: HttpClient) {
     this.support =
@@ -48,18 +53,18 @@ export class AppComponent {
 
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
-    console.log(event, base64ToFile(event.base64));
+    // console.log(event, base64ToFile(event.base64));
   }
 
   imageLoaded(sourceImageDimensions: Dimensions) {
     this.showCropper = true;
-    console.log('Image loaded', sourceImageDimensions);
+    // console.log('Image loaded', sourceImageDimensions);
     this.trueWidth = sourceImageDimensions.width;
     this.trueHeight = sourceImageDimensions.height;
   }
 
   cropperReady(sourceImageDimensions: Dimensions) {
-    console.log('Cropper ready', sourceImageDimensions);
+    // console.log('Cropper ready', sourceImageDimensions);
   }
 
   loadImageFailed() {
@@ -236,6 +241,41 @@ export class AppComponent {
     }
     that.scaling = true;
     that.scale = scale;
+  }
+
+  startMove(e: any) {
+    e.preventDefault();
+    this.moveX = ('clientX' in e ? e.clientX : e.touches[0].clientX) - this.xPos;
+    this.moveY = ('clientY' in e ? e.clientY : e.touches[0].clientY) - this.yPos;
+    window['$that'] = this;
+    window.addEventListener("mousemove", this.moveImg);
+    window.addEventListener("mouseup", this.leaveImg);
+  }
+
+  moveImg(e: any) {
+    e.preventDefault();
+    const that = window['$that']
+    if (!that) {
+      return;
+    }
+    let nowX = 'clientX' in e ? e.clientX : e.touches[0].clientX;
+    let nowY = 'clientY' in e ? e.clientY : e.touches[0].clientY;
+    let changeX, changeY;
+    changeX = nowX - that.moveX;
+    changeY = nowY - that.moveY;
+    that.xPos = changeX;
+    that.yPos = changeY;
+    that.transform = {
+      ...that.transform,
+      x: that.xPos,
+      y: that.yPos
+    };
+  }
+
+  leaveImg(e:any) {
+    const that = window['$that']
+    window.removeEventListener("mousemove", that.moveImg);
+    window.removeEventListener("mouseup", that.leaveImg);
   }
 
   uploadImg() {

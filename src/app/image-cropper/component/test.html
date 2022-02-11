@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style lang="css">
+    .box {
+      border: 1px solid red;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      transform: scale(1, 1) translate3d(0px, 0px, 0px) rotateZ(0deg);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" style="border: 1px solid;"></canvas>
+
+  <div style="width: 200px; height: 150px;border: 1px solid;margin-left: 100px;">
+    <div class="box" style=""></div>
+  </div>
+
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // reset current transformation matrix to the identity matrix
+    ctx.translate(100, 0);
+    ctx.fillRect(0, 0, 100, 100);
+  </script>
+</body>
+
+</html>

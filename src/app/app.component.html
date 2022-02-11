@@ -40,7 +40,8 @@
             (cropperReady)="cropperReady($event)"
             (loadImageFailed)="loadImageFailed()"
             (mouseover)="scaleImg()"
-            (mouseout)="cancelScale()"></image-cropper>
+            (mouseout)="cancelScale()"
+            (mousedown)="startMove($event)"></image-cropper>
         </div>
         <div>
           <button type="button" class="btn btn-primary" style="width: 350px;">オリジナル画像アップデート</button>

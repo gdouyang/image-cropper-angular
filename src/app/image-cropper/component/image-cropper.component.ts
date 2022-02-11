@@ -164,7 +164,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
             'scaleX(' + (scale || 1) * (this.transform.flipH ? -1 : 1) + ')' +
             'scaleY(' + (scale || 1) * (this.transform.flipV ? -1 : 1) + ')' +
             'rotate(' + (this.transform.rotate || 0) + 'deg)' +
-            'translate3d(' + (this.transform.x || 1) / scale + 'px,' + (this.transform.y || 1) / scale + 'px,' + '0)'
+            'translate3d(' + (this.transform.x || 0) / scale + 'px,' + (this.transform.y || 0) / scale + 'px,' + '0)'
         );
     }
 
@@ -803,6 +803,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
         if (this.sourceImage && this.sourceImage.nativeElement && this.transformedImage != null) {
             this.startCropImage.emit();
             const imagePosition = this.getImagePosition();
+            const x = (this.transform.x || 0) * imagePosition.ratio
+            const y = (this.transform.y || 0) * imagePosition.ratio
             const width = imagePosition.x2 - imagePosition.x1;
             const height = imagePosition.y2 - imagePosition.y1;
 
@@ -821,7 +823,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
                 const scaleY = (this.transform.scale || 1) * (this.transform.flipV ? -1 : 1);
 
                 ctx.setTransform(scaleX, 0, 0, scaleY, this.transformedSize.width / 2, this.transformedSize.height / 2);
-                ctx.translate(-imagePosition.x1 / scaleX, -imagePosition.y1 / scaleY);
+                ctx.translate((-imagePosition.x1 + x) / scaleX, (-imagePosition.y1 + y) / scaleY);
                 ctx.rotate((this.transform.rotate || 0) * Math.PI / 180);
                 ctx.drawImage(this.transformedImage, -this.transformedSize.width / 2, -this.transformedSize.height / 2);
 
@@ -857,7 +859,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
             x1: Math.round(this.cropper.x1 * ratio),
             y1: Math.round(this.cropper.y1 * ratio),
             x2: Math.round(this.cropper.x2 * ratio),
-            y2: Math.round(this.cropper.y2 * ratio)
+            y2: Math.round(this.cropper.y2 * ratio),
+            ratio: ratio
         };
 
         if (!this.containWithinAspectRatio) {
@@ -938,7 +941,4 @@ export class ImageCropperComponent implements OnChanges, OnInit {
         return (event.touches && event.touches[0] ? event.touches[0].clientY : event.clientY) || 0;
     }
 
-    startImg(event: any, moveType: MoveTypes, position: string | null = null): void {
-      debugger
-  }
 }

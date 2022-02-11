@@ -3,4 +3,5 @@ export interface CropperPosition {
     y1: number;
     x2: number;
     y2: number;
+    ratio?: number;
 }
