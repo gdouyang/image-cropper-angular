@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { EventManager } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 import {
   Dimensions,
   ImageCroppedEvent,
@@ -32,7 +33,7 @@ export class AppComponent {
   trueWidth = 0;
   trueHeight = 0;
 
-  constructor(private eventManager: EventManager) {
+  constructor(private eventManager: EventManager,private http: HttpClient) {
     this.support =
       "onwheel" in document.createElement("div")
         ? "wheel"
@@ -239,6 +240,11 @@ export class AppComponent {
 
   uploadImg() {
     this.convertImage = this.croppedImage
+    // TODO 发请求
+    // this.http.post<any>('/mock/data.json', {img: this.croppedImage})
+    // .subscribe((data) => {
+    //   console.log(data.result)
+    // });
   }
 
 }
