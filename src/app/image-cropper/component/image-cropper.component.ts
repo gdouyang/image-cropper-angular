@@ -75,7 +75,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     @Input() initialStepSize = 3;
     @Input() roundCropper = false;
     @Input() onlyScaleDown = false;
-    @Input() imageQuality = 92;
+    @Input() imageQuality = 100;
     @Input() autoCrop = true;
     @Input() backgroundColor: string;
     @Input() containWithinAspectRatio = false;

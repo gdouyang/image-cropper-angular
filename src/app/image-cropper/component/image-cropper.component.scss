@@ -73,7 +73,7 @@
             position: absolute;
             display: inline-block;
             line-height: 6px;
-            padding: 8px;
+            // padding: 8px;
             opacity: .85;
             z-index: 1;
 
@@ -87,50 +87,50 @@
             }
 
             &.topleft {
-                top: -12px;
-                left: -12px;
+                top: -4px;
+                left: -4px;
                 cursor: nwse-resize;
             }
 
             &.top {
-                top: -12px;
-                left: calc(50% - 12px);
+                top: -4px;
+                left: calc(50% - 4px);
                 cursor: ns-resize;
             }
 
             &.topright {
-                top: -12px;
-                right: -12px;
+                top: -4px;
+                right: -4px;
                 cursor: nesw-resize;
             }
 
             &.right {
-                top: calc(50% - 12px);
-                right: -12px;
+                top: calc(50% - 4px);
+                right: -4px;
                 cursor: ew-resize;
             }
 
             &.bottomright {
-                bottom: -12px;
-                right: -12px;
+                bottom: -4px;
+                right: -4px;
                 cursor: nwse-resize;
             }
 
             &.bottom {
-                bottom: -12px;
-                left: calc(50% - 12px);
+                bottom: -4px;
+                left: calc(50% - 4px);
                 cursor: ns-resize;
             }
 
             &.bottomleft {
-                bottom: -12px;
-                left: -12px;
+                bottom: -4px;
+                left: -4px;
                 cursor: nesw-resize;
             }
 
             &.left {
-                top: calc(50% - 12px);
-                left: -12px;
+                top: calc(50% - 4px);
+                left: -4px;
                 cursor: ew-resize;
             }
 
