@@ -41,7 +41,7 @@
             (loadImageFailed)="loadImageFailed()"
             (mouseover)="scaleImg()"
             (mouseout)="cancelScale()"
-            (mousedown)="startMove($event)"></image-cropper>
+            ></image-cropper>
         </div>
         <div>
           <button type="button" class="btn btn-primary" style="width: 350px;">オリジナル画像アップデート</button>
@@ -50,10 +50,6 @@
           <button class="btn btn-1" (click)="zoomOut()">-</button>
           <button class="btn btn-1" (click)="zoomIn()">+</button>
           <br>
-          <button class="btn btn-1" (click)="moveLeft()">left</button>
-          <button class="btn btn-1" (click)="moveRight()">right</button>
-          <button class="btn btn-1" (click)="moveUp()">up</button>
-          <button class="btn btn-1" (click)="moveDown()">down</button>
           <button class="btn btn-1" (click)="showCropper = false">clear</button> -->
           <!-- <button class="btn" (click)="flipHorizontal()">Flip horizontal</button>
           <button class="btn" (click)="flipVertical()">Flip vertical</button>

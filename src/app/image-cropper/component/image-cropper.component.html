@@ -15,6 +15,7 @@
         [style.width.px]="maxSize.width"
         [style.height.px]="maxSize.height"
         [style.margin-left]="alignImage === 'center' ? marginLeft : null"
+        (mousedown)="startMove1($event)"
     ></div>
     <div class="cropper"
          *ngIf="imageVisible"

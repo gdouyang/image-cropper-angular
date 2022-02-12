@@ -128,38 +128,6 @@ export class AppComponent {
     };
   }
 
-  moveLeft() {
-    this.xPos -= 10;
-    this.transform = {
-      ...this.transform,
-      x: this.xPos,
-    };
-  }
-
-  moveRight() {
-    this.xPos += 10;
-    this.transform = {
-      ...this.transform,
-      x: this.xPos,
-    };
-  }
-
-  moveUp() {
-    this.yPos -= 10;
-    this.transform = {
-      ...this.transform,
-      y: this.yPos,
-    };
-  }
-
-  moveDown() {
-    this.yPos += 10;
-    this.transform = {
-      ...this.transform,
-      y: this.yPos,
-    };
-  }
-
   toggleContainWithinAspectRatio() {
     this.containWithinAspectRatio = !this.containWithinAspectRatio;
   }
@@ -241,41 +209,6 @@ export class AppComponent {
     }
     that.scaling = true;
     that.scale = scale;
-  }
-
-  startMove(e: any) {
-    e.preventDefault();
-    this.moveX = ('clientX' in e ? e.clientX : e.touches[0].clientX) - this.xPos;
-    this.moveY = ('clientY' in e ? e.clientY : e.touches[0].clientY) - this.yPos;
-    window['$that'] = this;
-    window.addEventListener("mousemove", this.moveImg);
-    window.addEventListener("mouseup", this.leaveImg);
-  }
-
-  moveImg(e: any) {
-    e.preventDefault();
-    const that = window['$that']
-    if (!that) {
-      return;
-    }
-    let nowX = 'clientX' in e ? e.clientX : e.touches[0].clientX;
-    let nowY = 'clientY' in e ? e.clientY : e.touches[0].clientY;
-    let changeX, changeY;
-    changeX = nowX - that.moveX;
-    changeY = nowY - that.moveY;
-    that.xPos = changeX;
-    that.yPos = changeY;
-    that.transform = {
-      ...that.transform,
-      x: that.xPos,
-      y: that.yPos
-    };
-  }
-
-  leaveImg(e:any) {
-    const that = window['$that']
-    window.removeEventListener("mousemove", that.moveImg);
-    window.removeEventListener("mouseup", that.leaveImg);
   }
 
   uploadImg() {

@@ -53,6 +53,10 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     imageVisible = false;
     moveTypes = MoveTypes;
 
+    // move img
+    moveX = 0;
+    moveY = 0;
+
     @ViewChild('wrapper', {static: true}) wrapper: ElementRef;
     @ViewChild('sourceImage', {static: false}) sourceImage: ElementRef;
 
@@ -939,6 +943,42 @@ export class ImageCropperComponent implements OnChanges, OnInit {
 
     private getClientY(event: any): number {
         return (event.touches && event.touches[0] ? event.touches[0].clientY : event.clientY) || 0;
+    }
+
+    startMove1(e: any) {
+      e.preventDefault();
+      const xPos = this.transform.x || 0;
+      const yPos = this.transform.y || 0;
+      this.moveX = ('clientX' in e ? e.clientX : e.touches[0].clientX) - xPos;
+      this.moveY = ('clientY' in e ? e.clientY : e.touches[0].clientY) - yPos;
+      window['$that1'] = this;
+      window.addEventListener("mousemove", this.moveImg1);
+      window.addEventListener("mouseup", this.leaveImg);
+    }
+  
+    moveImg1(e: any) {
+      e.preventDefault();
+      const that = window['$that1']
+      if (!that) {
+        return;
+      }
+      let nowX = 'clientX' in e ? e.clientX : e.touches[0].clientX;
+      let nowY = 'clientY' in e ? e.clientY : e.touches[0].clientY;
+      let changeX, changeY;
+      changeX = nowX - that.moveX;
+      changeY = nowY - that.moveY;
+      that.transform.x = changeX;
+      that.transform.y = changeY;
+
+      that.setCssTransform();
+      // that.doAutoCrop();
+    }
+  
+    leaveImg(e:any) {
+      const that = window['$that1']
+      window.removeEventListener("mousemove", that.moveImg1);
+      window.removeEventListener("mouseup", that.leaveImg);
+      that.doAutoCrop();
     }
 
 }
